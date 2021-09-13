@@ -3,18 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ngeschwi <ngeschwi@stutent.42lyon.fr>      +#+  +:+       +#+         #
+#    By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/07 13:08:36 by ngeschwi          #+#    #+#              #
-#    Updated: 2021/07/08 12:14:50 by ngeschwi         ###   ########.fr        #
+#    Updated: 2021/09/13 17:06:29 by ngeschwi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS	= main.c \
 			sources/ft_init_struct.c \
-			sources/ft_start.c \
-			sources/ft_get_text_file1.c \
-			sources/gnl/gnl.c \
 			sources/basic_function/ft_strlen.c \
 			sources/basic_function/ft_strdup.c \
 			sources/basic_function/ft_strjoin.c

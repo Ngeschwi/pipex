@@ -12,20 +12,16 @@
 
 #include "pipex.h"
 
-int	main(int argc, char **argv, char **env)
+int	main(int argc, char **argv)
 {
 	t_data	data;
-	int		pipe_fd[2];
 
-	if (argc != 5)
-		return (EXIT);
-	ft_init_struct(&data, argv);
-	if (pipe(pipe_fd) == -1)
+	if (argc == 5)
 	{
-		perror("pipe");
-		return (ERROR);
+		if (ft_init_struct(&data, argv) == ERROR)
+			return (0);
 	}
-	if (ft_get_text_file1(&data) == ERROR)
-		return (ERROR);
-	ft_start(&data, pipe_fd, env);
+	else
+		perror("Erreur dans le nombre d'argument");
+	return (0);
 }

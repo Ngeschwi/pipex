@@ -3,21 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_struct.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngeschwi <ngeschwi@stutent.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/08 11:02:43 by ngeschwi          #+#    #+#             */
-/*   Updated: 2021/07/08 11:02:43 by ngeschwi         ###   ########.fr       */
+/*   Created: 2021/09/13 17:05:04 by ngeschwi          #+#    #+#             */
+/*   Updated: 2021/09/13 17:39:11 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	ft_init_struct(t_data *data, char **argv)
+static void	ft_get_argv(t_data *data, char **argv)
 {
-	data->name_file1 = argv[1];
-	data->cmd1 = ft_strjoin("/bin/", argv[2]);
-	data->cmd2 = ft_strjoin("/bin/", argv[3]);
-	data->name_file2 = argv[4];
-	data->text_file1 = NULL;
-	data->text_file2 = NULL;
+	data->infile = argv[1];
+	data->outfile = argv[4];
+	data->fd_in = open(data->infile, O_RDWR);
+	data->fd_out = open(data->outfile, O_RDWR);
+	printf("fd_in : %d\n", data->fd_in);
+	printf("fd_out : %d\n", data->fd_out);
+}
+
+int	ft_init_struct(t_data *data, char **argv)
+{
+	if (pipe(data->pipe_fd) == -1)
+	{
+		perror("Pipe");
+		return (ERROR);
+	}
+	ft_get_argv(data, argv);
+	return (NO_ERROR);
 }
