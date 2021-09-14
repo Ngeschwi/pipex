@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/07 13:11:33 by ngeschwi          #+#    #+#             */
-/*   Updated: 2021/09/13 17:17:41 by ngeschwi         ###   ########.fr       */
+/*   Created: 2021/09/14 17:05:15 by ngeschwi          #+#    #+#             */
+/*   Updated: 2021/09/14 17:43:59 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,28 +22,31 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 
-# define BUFFER_SIZE 50
-# define STD_IN 0
-# define STD_OUT 1
 # define EXIT 0
 # define ERROR 0
 # define NO_ERROR 1
 
-typedef struct	s_data
+typedef struct s_data
 {
+	pid_t	pid;
 	int		pipe_fd[2];
 	int		fd_in;
 	int		fd_out;
-	char	*new_argv1[3];
-	char	*new_argv2[3];
 	char	*infile;
 	char	*outfile;
+	char	**new_argv1;
+	char	**new_argv2;
+	char	*path_arg1;
+	char	*path_arg2;
+	char	*all_path[7];
 }				t_data;
+
+int		ft_init_struct(t_data *data, char **argv);
+int		ft_start(t_data *data, char **env);
 
 int		ft_strlen(const char *str);
 char	*ft_strdup(char *src);
 char	*ft_strjoin(char *str, char *str2);
-
-int		ft_init_struct(t_data *data, char **argv);
+char	**ft_split(char const *s, char c);
 
 #endif

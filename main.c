@@ -12,7 +12,7 @@
 
 #include "pipex.h"
 
-int	main(int argc, char **argv)
+int	main(int argc, char **argv, char **env)
 {
 	t_data	data;
 
@@ -20,6 +20,7 @@ int	main(int argc, char **argv)
 	{
 		if (ft_init_struct(&data, argv) == ERROR)
 			return (0);
+		ft_start(&data, env);
 	}
 	else
 		perror("Erreur dans le nombre d'argument");
