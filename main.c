@@ -22,12 +22,14 @@ int	main(int argc, char **argv, char **env)
 			return (0);
 		if (pipe(data.pipe_fd) == -1)
 		{
+			ft_free_data(&data);
 			perror("Pipe");
 			return (ERROR);
 		}
 		data.pid = fork();
 		if (data.pid == -1)
 		{
+			ft_free_data(&data);
 			perror("fork");
 			exit(EXIT_FAILURE);
 		}

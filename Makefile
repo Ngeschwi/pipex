@@ -6,13 +6,14 @@
 #    By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/07 13:08:36 by ngeschwi          #+#    #+#              #
-#    Updated: 2021/09/14 16:01:54 by ngeschwi         ###   ########.fr        #
+#    Updated: 2021/09/15 15:49:36 by ngeschwi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS	= main.c \
 			sources/ft_init_struct.c \
 			sources/ft_start.c \
+			sources/ft_free.c \
 			sources/basic_function/ft_strlen.c \
 			sources/basic_function/ft_strdup.c \
 			sources/basic_function/ft_strjoin.c \

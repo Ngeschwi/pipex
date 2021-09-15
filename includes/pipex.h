@@ -6,7 +6,7 @@
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 17:05:15 by ngeschwi          #+#    #+#             */
-/*   Updated: 2021/09/15 14:53:19 by ngeschwi         ###   ########.fr       */
+/*   Updated: 2021/09/15 15:51:20 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_data
 
 int		ft_init_struct(t_data *data, char **argv);
 int		ft_start(t_data *data, char **env);
+void	ft_free_data(t_data *data);
 
 int		ft_strlen(const char *str);
 char	*ft_strdup(char *src);

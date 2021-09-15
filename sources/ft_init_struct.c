@@ -6,7 +6,7 @@
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 17:05:04 by ngeschwi          #+#    #+#             */
-/*   Updated: 2021/09/15 15:22:12 by ngeschwi         ###   ########.fr       */
+/*   Updated: 2021/09/15 15:50:24 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	ft_get_argv(t_data *data, char **argv)
 	if (data->fd_in == -1)
 	{
 		write(data->fd_out, "	   0\n", 6);
-		perror("fd infile");
+		perror("erreur infile");
 		return (ERROR);
 	}
 	data->new_argv1 = ft_split(argv[2], ' ');
@@ -67,6 +67,7 @@ int	ft_init_struct(t_data *data, char **argv)
 	data->path_arg2 = ft_get_path(data, data->new_argv2);
 	if (data->path_arg1 == NULL || data->path_arg2 == NULL)
 	{
+		ft_free_data(data);
 		perror("Bad command");
 		return (ERROR);
 	}
