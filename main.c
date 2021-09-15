@@ -20,7 +20,19 @@ int	main(int argc, char **argv, char **env)
 	{
 		if (ft_init_struct(&data, argv) == ERROR)
 			return (0);
-		ft_start(&data, env);
+		if (pipe(data.pipe_fd) == -1)
+		{
+			perror("Pipe");
+			return (ERROR);
+		}
+		data.pid = fork();
+		if (data.pid == -1)
+		{
+			perror("fork");
+			exit(EXIT_FAILURE);
+		}
+		if (ft_start(&data, env) == ERROR)
+			return (ERROR);
 	}
 	else
 		perror("Erreur dans le nombre d'argument");

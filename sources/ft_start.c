@@ -6,7 +6,7 @@
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:01:20 by ngeschwi          #+#    #+#             */
-/*   Updated: 2021/09/14 16:14:25 by ngeschwi         ###   ########.fr       */
+/*   Updated: 2021/09/15 14:53:25 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,30 @@ static int	ft_pere(t_data *data, char **env)
 	return (ERROR);
 }
 
+static void	ft_end(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	free(data->path_arg1);
+	free(data->path_arg2);
+	while (data->new_argv1[i])
+	{
+		free(data->new_argv1[i]);
+		i++;
+	}
+	i = 0;
+	while (data->new_argv2[i])
+	{
+		free(data->new_argv2[i]);
+		i++;
+	}
+	free(data->new_argv1);
+	free(data->new_argv2);
+}
+
 int	ft_start(t_data *data, char **env)
 {
-	if (pipe(data->pipe_fd) == -1)
-	{
-		perror("pipe");
-		return (0);
-	}
-	data->pid = fork();
-	if (data->pid == -1)
-	{
-		perror("fork");
-		exit(EXIT_FAILURE);
-	}
 	if (data->pid == 0)
 	{
 		if (ft_fils(data, env) == ERROR)
@@ -75,8 +86,19 @@ int	ft_start(t_data *data, char **env)
 	}
 	else
 	{
-		if (ft_pere(data, env) == ERROR)
-			return (ERROR);
+		data->pid2 = fork();
+		if (data->pid2 == -1)
+		{
+			perror("fork");
+			exit(EXIT_FAILURE);
+		}
+		if (data->pid2 == 0)
+		{
+			if (ft_pere(data, env) == ERROR)
+				return (ERROR);
+		}
+		else
+			ft_end(data);
 	}
-	return (NO_ERROR);
+	return (SUCCESS);
 }

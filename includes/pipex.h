@@ -6,7 +6,7 @@
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 17:05:15 by ngeschwi          #+#    #+#             */
-/*   Updated: 2021/09/14 17:43:59 by ngeschwi         ###   ########.fr       */
+/*   Updated: 2021/09/15 14:53:19 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,12 @@
 
 # define EXIT 0
 # define ERROR 0
-# define NO_ERROR 1
+# define SUCCESS 1
 
 typedef struct s_data
 {
 	pid_t	pid;
+	pid_t	pid2;
 	int		pipe_fd[2];
 	int		fd_in;
 	int		fd_out;
